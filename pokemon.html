@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+</head>
+<style>
+  body{
+    background-color: #52ACFF;
+    background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+  }
+  img{
+    width: 300px;
+    border: 3px ridge olive;
+  }
+  div#container{
+    max-width: 1100px;
+    margin-left: 150px;
+  }
+</style>
+<body>
+  <div id="container">
+    <div id="fila" class="row">      
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){      
+      for(var i=1; i<=151; i++){        
+        $('#fila').append("<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+i+".png'>");
+      }
+    });
+  </script>
+</body>
+</html>
