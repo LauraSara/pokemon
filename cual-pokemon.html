@@ -20,6 +20,10 @@
       height: 600px;
       margin-top: 100px;
     }
+    #pokeMin{
+      width: 200px;
+      border: none;
+    }
     img {
       border: 3px ridge cornflowerblue;
       margin: 10px;
@@ -34,8 +38,11 @@
     h3 {
       color:darkblue;
       text-align: center;
+      box-shadow: 0px 0px 10px black;
     }
     .pokemonName {
+      color: darkblue;
+      box-shadow: 0px 0px 10px black;
       margin-bottom: 15px;
       text-transform: uppercase;
     }
@@ -43,6 +50,17 @@
       color: darkblue;
       margin-left: 80px;
     }    
+    .pokeSeleccionado {
+      height: 150px;
+      background-color: white;
+      width: 400px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      margin-left: 550px;
+      visibility: visible;
+    }
   </style>
 
 </head>
@@ -51,6 +69,7 @@
     <div class="row text-center">
       <div class="col-12 pokeDatos">
         <div class="pokemonName"> </div>
+        <div class="pokeSeleccionado col-10"></div>
         <h5 class="col-12">Tipo</h5>
         <div class="div type col-11"></div>
         <h5 class="col-12">Altura</h5>
@@ -68,7 +87,7 @@
     function iterarPoke() {
         for (var i = 1; i <= 151; i++) {
           $('#fila').append("<img class='lista' id='" + i + "' src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + i + ".png' alt=''>")
-        };
+        };        
     }
     $('document').ready(function () {      
         iterarPoke();
@@ -76,7 +95,9 @@
             var IdPoke = $(this).attr('id');
             console.log(IdPoke)
             $.get("https://pokeapi.co/api/v2/pokemon/" + IdPoke + "/", function (data){
+              console.log(data);
                 $('.pokemonName').html("<h3>" + data.name + "</h3>") 
+                $('.pokeSeleccionado').html("<img id='pokeMin' src='" + data.sprites.other.dream_world.front_default + "' alt=''>")
                 var type = '<p>';
                 for (var i = 0; i < data.types.length; i++) {
                     if (i == 0) {
@@ -84,15 +105,16 @@
                     } else {
                         type += ' / ' + data.types[i].type.name;
                     };
+                    //para la imagen =>(data.sprites.other.dream_world.front_default); ----------
                 };
                 type += '</p>';
                 $('.type').html(type)
                 $('.height').html("<p>" + data.height + "</p>")
                 $('.weight').html("<p>" + data.weight + "</p>")
-                console.log(data);
             }, "json");
         });
     });
+    
   </script>
 </body>
 </html>
