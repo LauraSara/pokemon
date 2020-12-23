@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+</head>
+<style>
+  
+  img{
+    width: 200px;
+    border: 3px ridge royalblue;
+    margin: 20px;
+  }
+  div#container{
+    max-width: 1100px;
+    margin-left: 150px;
+  }
+</style>
+<body>
+  <div id="container">
+    <div id="bulbasour"></div>
+    <div id="fila" class="row">      
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){      
+      
+      $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data) {
+        var string= "<h2> Pokemon </h2><h4>Tipos</h4><ul>"
+        for (var i=0; i< data.types.length; i++){
+          string += "<li>" + data.types[i].type.name + "</li>";
+        }
+        string += "</ul>";
+        //hay que poner este HTML en la pagina.
+        $('#bulbasour').html(string);
+        console.log(data);
+          
+      }, "json");
+      
+    });
+  </script>
+</body>
+</html>
